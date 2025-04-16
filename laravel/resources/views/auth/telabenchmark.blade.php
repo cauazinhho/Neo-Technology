@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Benchmark - Cyberpunk</title>
+  <title>Benchmark - {{ ucfirst($game) }}</title>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
   <style>
     * {
@@ -13,7 +14,8 @@
       font-family: 'Orbitron', sans-serif;
     }
 
-    html, body {
+    html,
+    body {
       height: 100%;
     }
 
@@ -109,6 +111,17 @@
       font-family: 'Orbitron', sans-serif;
     }
 
+    button {
+      margin-top: 10px;
+      padding: 8px 16px;
+      border: none;
+      border-radius: 4px;
+      background-color: #00e5ff;
+      color: #000;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
     .fps-results {
       display: flex;
       justify-content: center;
@@ -141,17 +154,18 @@
     }
   </style>
 </head>
+
 <body>
   <header>
     <div class="logo-title">
       <h1>Neo Technology</h1>
-      <img src="img/lamen.png" alt="Logo">
+      <img src="{{ asset('img/lamen.png') }}" alt="Logo">
     </div>
     <div class="login">Olá, Leon</div>
   </header>
 
   <main>
-    <img src="img/cyber.png" alt="Cyberpunk 2077" class="game-cover">
+    <img src="{{ asset('img/' . $game . '.png') }}" alt="{{ ucfirst($game) }}" class="game-cover">
 
     <div class="requisitos">
       <div>
@@ -174,55 +188,60 @@
       </div>
     </div>
 
-    <div class="formulario">
+    <!-- Formulário que envia para a controller -->
+    <form class="formulario" method="GET" action="{{ url('/benchmark/' . $game) }}">
       <h3>Sistema do seu interesse</h3>
-      <select>
-        <option>Selecione processador</option>
-        <option>Ryzen 5 5500</option>
-        <option>Intel i5-11400F</option>
-        <option>Ryzen 7 5800X</option>
-      </select>
-      <select>
-        <option>Selecione placa de vídeo</option>
-        <option>GTX 1650</option>
-        <option>RTX 3060</option>
-        <option>RTX 4070</option>
-      </select>
-      <select>
-        <option>RAM</option>
-        <option>8 GB</option>
-        <option>16 GB</option>
-        <option>32 GB</option>
-      </select>
-    </div>
 
+      <select name="cpu" required>
+        <option value="">Selecione processador</option>
+        @foreach($cpus as $cpuOption)
+      <option value="{{ $cpuOption }}" {{ isset($cpu) && $cpu == $cpuOption ? 'selected' : '' }}>
+        {{ $cpuOption }}
+      </option>
+    @endforeach
+      </select>
+
+      <select name="gpu" required>
+        <option value="">Selecione placa de vídeo</option>
+        @foreach($gpus as $gpuOption)
+      <option value="{{ $gpuOption }}" {{ isset($gpu) && $gpu == $gpuOption ? 'selected' : '' }}>
+        {{ $gpuOption }}
+      </option>
+    @endforeach
+      </select>
+
+      <button type="submit">Calcular FPS</button>
+    </form>
+
+    @if(isset($fps))
     <div class="fps-results">
       <div>
-        <p>gráfico baixo</p>
-        <strong>104 FPS</strong>
+      <p>gráfico baixo</p>
+      <strong>{{ intval($fps * 0.7) }} FPS</strong>
       </div>
       <div>
-        <p>gráfico médio</p>
-        <strong>87 FPS</strong>
+      <p>gráfico médio</p>
+      <strong>{{ intval($fps * 0.85) }} FPS</strong>
       </div>
       <div>
-        <p>gráfico alto</p>
-        <strong>68 FPS</strong>
+      <p>gráfico alto</p>
+      <strong>{{ intval($fps) }} FPS</strong>
       </div>
       <div>
-        <p>gráfico ultra</p>
-        <strong>57 FPS</strong>
+      <p>gráfico ultra</p>
+      <strong>{{ intval($fps * 1.1) }} FPS</strong>
       </div>
     </div>
 
     <div class="upgrade">
-      recomendamos um upgrade: <strong>RYZEN 5 5500 - RTX 4070</strong>
+      recomendamos um upgrade: <strong>{{ $cpu }} + {{ $gpu }}</strong>
     </div>
+  @endif
 
     <div class="terabyte">
       <p>compre aqui:</p>
       <a href="https://www.terabyteshop.com.br" target="_blank">
-        <img src="img/terabyte.png" alt="Cyberpunk"/>
+        <img src="{{ asset('img/terabyte.png') }}" alt="Loja Terabyte" />
       </a>
     </div>
   </main>
@@ -231,4 +250,5 @@
     &copy; TODOS OS DIREITOS RESERVADOS
   </footer>
 </body>
+
 </html>

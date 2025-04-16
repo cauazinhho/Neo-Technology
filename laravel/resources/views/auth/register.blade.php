@@ -114,6 +114,18 @@
         color: #aaa;
         font-size: 0.9rem;
       }
+
+      @media (min-width: 640px) {
+    .sm\:pt-0 {
+        background-color: #00000000;
+        }
+      }
+
+    .bg-white {
+        background-color: #00000000;
+        --bs-bg-opacity: 0;
+        background-color: rgba(var(--bs-white-rgb), var(--bs-bg-opacity)) !important;
+      }
 </style>
 </head>
 <body>
@@ -148,6 +160,11 @@
         <div class="input-group">
 <input id="password_confirmation" type="password" name="password_confirmation" class="form-control" placeholder="Confirmar Senha" required>
 <span class="input-group-text"><i class="fa fa-lock"></i></span>
+</div>
+
+<div class="input-group">
+<input id="cpf" type="text" name="cpf" class="form-control" placeholder="CPF" value="{{ old('cpf') }}" required>
+<span class="input-group-text"><i class="fa fa-id-card"></i></span>
 </div>
  
         <x-input-error :messages="$errors->all()" class="mt-2 text-danger" />

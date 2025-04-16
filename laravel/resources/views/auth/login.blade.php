@@ -62,21 +62,14 @@
     }
  
     .logo {
-
       width: 40px;
-
       margin-left: 10px;
-
     }
  
     .title-text h1 {
-
       font-size: 1.5rem;
-
       color: #00e5ff;
-
       margin-bottom: 2px;
-
     }
  
     .title-text h2 {

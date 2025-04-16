@@ -8,10 +8,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 <style>
-    * {
-      font-family: 'Orbitron', sans-serif;
-    }
- 
+    * { font-family: 'Orbitron', sans-serif; }
     body {
       background-color: #0f1512;
       color: #fff;
@@ -20,18 +17,12 @@
       align-items: center;
       height: 100vh;
     }
- 
     .container {
       text-align: center;
       max-width: 400px;
       width: 100%;
     }
- 
-    .logo {
-      width: 50px;
-      height: 50px;
-    }
- 
+    .logo { width: 50px; height: 50px; }
     .logo-title {
       display: flex;
       align-items: center;
@@ -39,49 +30,28 @@
       gap: 10px;
       margin-bottom: 5px;
     }
- 
-    .logo-title h1 {
-      font-size: 1.5rem;
-      color: #00e5ff;
-      margin: 0;
-    }
- 
-    h2 {
-      font-size: 1.2rem;
-      color: #ff00ff;
-      margin-bottom: 30px;
-    }
- 
-    h3 {
-      font-size: 1rem;
-      font-weight: bold;
-      margin-bottom: 20px;
-    }
- 
+    .logo-title h1 { font-size: 1.5rem; color: #00e5ff; margin: 0; }
+    h2 { font-size: 1.2rem; color: #ff00ff; margin-bottom: 10px; }
+    h3 { font-size: 1rem; font-weight: bold; margin-bottom: 20px; }
     .input-group {
       background-color: #444;
       border-radius: 6px;
       padding: 10px;
       margin-bottom: 20px;
     }
- 
-    .input-group input {
+    .form-control {
       background: transparent;
       border: none;
       color: #fff;
     }
- 
-    .input-group input::placeholder {
-      color: #ccc;
-    }
- 
+    .form-control::placeholder { color: #ccc; }
     .input-group-text {
       background: transparent;
       border: none;
       color: #aaa;
+      cursor: pointer;
     }
- 
-    .btn-send {
+    .btn-reset {
       width: 100%;
       padding: 10px;
       background-color: #00d1ff;
@@ -91,11 +61,7 @@
       border-radius: 20px;
       transition: 0.3s;
     }
- 
-    .btn-send:hover {
-      background-color: #00c4f4;
-    }
- 
+    .btn-reset:hover { background-color: #00c4f4; }
     .top-text {
       position: absolute;
       top: 10px;
@@ -106,28 +72,63 @@
 </style>
 </head>
 <body>
-<div class="top-text"><img src="img/lamen.png" alt="logo" class="logo"></div>
- 
-  <div class="container">
+<div class="top-text"><img src="{{ asset('img/lamen.png') }}" alt="logo" class="logo"></div>
+<div class="container">
 <div class="logo-title">
 <h1>Neo Technology</h1>
-<img src="img/lamen.png" alt="Logo" class="logo" />
+<img src="{{ asset('img/lamen.png') }}" alt="Logo" class="logo" />
 </div>
+<h2>ネオテクノロジー</h2>
+<h3>Redefinir a senha</h3>
  
-    <h2>ネオテクノロジー</h2>
-<h3>Redefinir a senha.</h3>
+    @if ($errors->any())
+<div class="text-danger mb-3">
+        @foreach ($errors->all() as $error)
+<p>{{ $error }}</p>
+        @endforeach
+</div>
+    @endif
  
-    <form method="POST" action="{{ route('password.email') }}">
+    <form method="POST" action="{{ route('password.cpf.reset') }}">
       @csrf
-<div class="input-group">
-<input type="email" name="email" class="form-control" placeholder="E-mail cadastrado" required autofocus>
-<span class="input-group-text"><i class="fa fa-envelope"></i></span>
+ 
+      <div class="input-group">
+<input type="text" name="cpf" class="form-control" placeholder="Digite seu CPF" required>
+<span class="input-group-text"><i class="fa fa-id-card"></i></span>
 </div>
  
-      <button type="submit" class="btn btn-send mt-3">ENVIAR LINK</button>
+      <div class="input-group">
+<input type="password" name="password" class="form-control" id="senha" placeholder="Nova senha" required>
+<span class="input-group-text" onclick="toggleSenha('senha', this)">
+<i class="fa fa-eye"></i>
+</span>
+</div>
+ 
+      <div class="input-group">
+<input type="password" name="password_confirmation" class="form-control" id="confirmaSenha" placeholder="Confirmar nova senha" required>
+<span class="input-group-text" onclick="toggleSenha('confirmaSenha', this)">
+<i class="fa fa-eye"></i>
+</span>
+</div>
+ 
+      <button type="submit" class="btn btn-reset mt-3">REDEFINIR</button>
 </form>
 </div>
  
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    function toggleSenha(idInput, icone) {
+      const input = document.getElementById(idInput);
+      const icon = icone.querySelector('i');
+      if (input.type === "password") {
+        input.type = "text";
+        icon.classList.remove("fa-eye");
+        icon.classList.add("fa-eye-slash");
+      } else {
+        input.type = "password";
+        icon.classList.remove("fa-eye-slash");
+        icon.classList.add("fa-eye");
+      }
+    }
+</script>
 </body>
 </html>
