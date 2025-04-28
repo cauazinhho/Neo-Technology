@@ -18,11 +18,15 @@
       min-height: 100vh;
     }
 
+    a {
+      text-decoration: none;
+    }
+
     header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 20px 40px;
+      padding: 30px 40px;
     }
 
     .logo {
@@ -111,10 +115,10 @@
 <body>
 
   <header>
-    <div class="logo">
+    <a href="/telainicio"><div class="logo">
       <span>Neo Technology</span>
       <img src="img/lamen.png" alt="Logo" />
-    </div>
+    </div></a>
     <div class="user">
       Olá, Usuário!
     </div>

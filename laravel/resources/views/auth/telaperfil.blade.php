@@ -15,6 +15,32 @@
       text-align: center;
     }
 
+    a {
+      text-decoration: none;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 30px 40px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo img {
+      width: 30px;
+    }
+
+    .logo span {
+      font-size: 20px;
+      color: #00f0ff;
+    }
+
     .logo-container {
       position: absolute;
       top: 10px;
@@ -76,11 +102,17 @@
   </style>
 </head>
 <body>
-  <div class="logo-container">
-    <img src="img/lamen.png" alt="logo">
-  </div>
+<header>
+    <a href="/telamain"><div class="logo">
+      <span>Neo Technology</span>
+      <img src="img/lamen.png" alt="Logo" />
+    </div></a>
+    <div class="user">
+      Bem vindo Usuário
+    </div>
+  </header>
 
-  <a href="#" class="editar-perfil">Editar Perfil</a>
+  <!-- <a href="#" class="editar-perfil">Editar Perfil</a> -->
 
   <div class="perfil-container">
     <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png" alt="Avatar" />

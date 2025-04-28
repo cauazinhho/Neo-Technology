@@ -28,6 +28,10 @@
       flex-direction: column;
     }
 
+    a {
+      text-decoration: none;
+    }
+
     main {
       flex: 1;
     }
@@ -36,21 +40,26 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 10px 30px;
+      padding: 10px 40px;
     }
 
     .logo-title {
       display: flex;
       align-items: center;
+      gap: 10px;
+
     }
 
     .logo-title h1 {
-      color: #00e5ff;
-      margin-right: 10px;
+      font-weight: 300;
+      font-size: 20px;
+      color: #00f0ff;
+      text-decoration: none;
+
     }
 
     .logo-title img {
-      width: 40px;
+      width: 30px;
     }
 
     .login {
@@ -163,41 +172,43 @@
 
 <body>
   <header>
-    <div class="logo-title">
-      <h1>Neo Technology</h1>
-      <img src="{{ asset('img/lamen.png') }}" alt="Logo">
-    </div>
+    <a href="/telamain">
+      <div class="logo-title">
+        <h1>Neo Technology</h1>
+        <img src="{{ asset('img/lamen.png') }}" alt="Logo">
+      </div>
+    </a>
     <div class="login">Admin</div>
   </header>
 
   <main>
-  
 
-  <img class="cyber" src="{{ asset($image) }}" alt="{{ ucfirst(str_replace('-', ' ', $game)) }}">
+
+    <img class="cyber" src="{{ asset($image) }}" alt="{{ ucfirst(str_replace('-', ' ', $game)) }}">
 
 
 
 
     <div class="requisitos">
-  <div>
-    <h2 class="minimos">requisitos mínimos</h2>
-    <p>Placa de vídeo: {{ $requisitos['min']['gpu'] }}</p>
-    <p>Processador: {{ $requisitos['min']['cpu'] }}</p>
-    <p>Memória: {{ $requisitos['min']['ram'] }}</p>
-    <p>Disco: {{ $requisitos['min']['disk'] }}</p>
-    <p>Sistema: {{ $requisitos['min']['os'] }}</p>
-    <p>DirectX: {{ $requisitos['min']['dx'] }}</p>
-  </div>
-  <div>
-    <h2 class="recomendados">requisitos recomendados</h2>
-    <p>Placa de vídeo: {{ $requisitos['rec']['gpu'] }}</p>
-    <p>Processador: {{ $requisitos['rec']['cpu'] }}</p>
-    <p>Memória: {{ $requisitos['rec']['ram'] }}</p>
-    <p>Disco: {{ $requisitos['rec']['disk'] }}</p>
-    <p>Sistema: {{ $requisitos['rec']['os'] }}</p>
-    <p>DirectX: {{ $requisitos['rec']['dx'] }}</p>
-  </div>
-</div>
+      <div>
+        <h2 class="minimos">requisitos mínimos</h2>
+        <p>Placa de vídeo: {{ $requisitos['min']['gpu'] }}</p>
+        <p>Processador: {{ $requisitos['min']['cpu'] }}</p>
+        <p>Memória: {{ $requisitos['min']['ram'] }}</p>
+        <p>Disco: {{ $requisitos['min']['disk'] }}</p>
+        <p>Sistema: {{ $requisitos['min']['os'] }}</p>
+        <p>DirectX: {{ $requisitos['min']['dx'] }}</p>
+      </div>
+      <div>
+        <h2 class="recomendados">requisitos recomendados</h2>
+        <p>Placa de vídeo: {{ $requisitos['rec']['gpu'] }}</p>
+        <p>Processador: {{ $requisitos['rec']['cpu'] }}</p>
+        <p>Memória: {{ $requisitos['rec']['ram'] }}</p>
+        <p>Disco: {{ $requisitos['rec']['disk'] }}</p>
+        <p>Sistema: {{ $requisitos['rec']['os'] }}</p>
+        <p>DirectX: {{ $requisitos['rec']['dx'] }}</p>
+      </div>
+    </div>
 
 
     <form class="formulario" method="POST" action="{{ route('telabenchmark.calcular', ['game' => $game]) }}">

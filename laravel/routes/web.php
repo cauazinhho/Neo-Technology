@@ -4,7 +4,8 @@ use App\Http\Controllers\AuthenticatedSessionController;
 use App\Http\Controllers\BenchmarkController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\Auth\ResetCpfPasswordController;
+use App\Http\Controllers\Auth\ForgotPasswordController;
 
 
 Route::get('/', function () {
@@ -24,7 +25,6 @@ Route::middleware('auth')->group(function () {
 require __DIR__.'/auth.php';
 
 // Forgot
-use App\Http\Controllers\Auth\ResetCpfPasswordController;
  
 Route::get('/reset-cpf', [ResetCpfPasswordController::class, 'showResetForm'])->name('password.cpf.form');
 Route::post('/reset-cpf', [ResetCpfPasswordController::class, 'reset'])->name('password.cpf.reset');
@@ -38,9 +38,9 @@ Route::get('/telainicio', function () {
     return view('auth/telainicio'); // ou o controller que você usa
 })->name('telainicio')->middleware('auth');
 
-Route::get('/telaeditar', function () {
-    return view('auth/telaeditar'); // ou o controller que você usa
-})->name('telaeditar')->middleware('auth');
+Route::get('/telaexcluir', function () {
+    return view('auth/telaexcluir'); // ou o controller que você usa
+})->name('telaexcluir')->middleware('auth');
 
 Route::get('/telaperfil', function () {
     return view('auth/telaperfil'); // ou o controller que você usa
@@ -53,3 +53,5 @@ Route::get('/telaperfil', function () {
 Route::get('/benchmark/{game}', [BenchmarkController::class, 'show'])->name('telabenchmark.show');
 Route::post('/benchmark/{game}', [BenchmarkController::class, 'calcular'])->name('telabenchmark.calcular');
 
+Route::get('/reset-password', [ResetCpfPasswordController::class, 'showLinkRequestForm'])->name('password.request');
+Route::post('/reset-password', [ResetCpfPasswordController::class, 'sendResetLinkEmail'])->name('password.email');

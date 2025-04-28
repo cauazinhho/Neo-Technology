@@ -79,8 +79,8 @@
     <div class="subtitle">ネオテクノロジー</div>
 
     <div class="d-flex gap-3">
-      <a href="#" class="btn btn-login">LOGIN</a>
-      <a href="#" class="btn btn-register">REGISTRAR</a>
+      <a href="/login" class="btn btn-login">LOGIN</a>
+      <a href="/register" class="btn btn-register">REGISTRAR</a>
     </div>
   </div>
 
