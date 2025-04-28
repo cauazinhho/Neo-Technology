@@ -34,13 +34,22 @@ Route::get('/telamain', function () {
     return view('auth/telamain'); // ou o controller que você usa
 })->name('telamain')->middleware('auth');
 
+Route::get('/telainicio', function () {
+    return view('auth/telainicio'); // ou o controller que você usa
+})->name('telainicio')->middleware('auth');
+
+Route::get('/telaeditar', function () {
+    return view('auth/telaeditar'); // ou o controller que você usa
+})->name('telaeditar')->middleware('auth');
+
+Route::get('/telaperfil', function () {
+    return view('auth/telaperfil'); // ou o controller que você usa
+})->name('telaperfil')->middleware('auth');
 
 
 
-//Route::get('/telabenchmark', function () {
-  //  return view('auth/telabenchmark'); // ou o controller que você usa
-//})->name('telabenchmark')->middleware('auth');
 
 
-Route::get('auth/telabenchmark/{game}', [BenchmarkController::class, 'show']);
+Route::get('/benchmark/{game}', [BenchmarkController::class, 'show'])->name('telabenchmark.show');
+Route::post('/benchmark/{game}', [BenchmarkController::class, 'calcular'])->name('telabenchmark.calcular');
 

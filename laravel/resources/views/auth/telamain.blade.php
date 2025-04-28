@@ -72,6 +72,13 @@
       border-radius: 5px;
       margin-bottom: 15px;
       object-fit: cover;
+      transition: 1s ease;
+      
+    }
+
+    .game-card img:hover{
+      scale: 1.05
+
     }
 
     .game-card button {
@@ -83,6 +90,13 @@
       color: black;
       font-weight: bold;
     }
+
+    .game-card button:hover {
+      background-color: #007691;
+      color: white;
+    }
+
+    
 
     footer {
       background-color: #00aaff;
@@ -108,41 +122,46 @@
 
   <div class="games-container">
     <div class="games-grid">
+
       <div class="game-card">
-        <img src="img/cyber.png" alt="Cyberpunk" />
-        <a href="telabenchmark.blade.php"></a><button>VAI RODAR?</button></a>
+        <img src="img/cyberpunk.png" alt="Cyberpunk" />
+        <a href="benchmark/cyberpunk"><button>VAI RODAR?</button></a>
+      </div>
+
+      <div class="game-card">
+        <img src="img/the-last-of-us.png" alt="The Last of Us" />
+        <a href="benchmark/the-last-of-us"><button>VAI RODAR?</button></a>
+      </div>
+
+      <div class="game-card">
+        <img src="img/resident-evil-4.png" alt="Resident Evil 4" />
+        <a href="benchmark/resident-evil-4"><button>VAI RODAR?</button></a>
+      </div>
+
+      <div class="game-card">
+        <img src="img/fortnite.jpg" alt="Fortnite" />
+        <a href="benchmark/fortnite"><button>VAI RODAR?</button></a>
+      </div>
+
+      <div class="game-card">
+        <img src="img/fc-25.jpg" alt="FC 25" />
+        <a href="benchmark/fc-25"><button>VAI RODAR?</button></a>
       </div>
       <div class="game-card">
-        <img src="img/tlo.png" alt="The Last of Us" />
-        <button>VAI RODAR?</button>
+        <img src="img/elden-ring.jpg" alt="Elden Ring" />
+        <a href="benchmark/elden-ring"><button>VAI RODAR?</button></a>
       </div>
       <div class="game-card">
-        <img src="img/evil4.jpg" alt="Resident Evil 4" />
-        <button>VAI RODAR?</button>
-      </div>
-      <div class="game-card">
-        <img src="img/fort.jpg" alt="Fortnite" />
-        <button>VAI RODAR?</button>
-      </div>
-      <div class="game-card">
-        <img src="img/fifa.jpg" alt="FC 25" />
-        <button>VAI RODAR?</button>
-      </div>
-      <div class="game-card">
-        <img src="img/elden.jpg" alt="Elden Ring" />
-        <button>VAI RODAR?</button>
-      </div>
-      <div class="game-card">
-        <img src="img/stalk.jpg" alt="Stalker 2" />
-        <button>VAI RODAR?</button>
+        <img src="img/stalker-2.jpg" alt="Stalker 2" />
+        <a href="benchmark/stalker-2"><button>VAI RODAR?</button></a>
       </div>
       <div class="game-card">
         <img src="img/Stray.png" alt="Stray" />
-        <button>VAI RODAR?</button>
+        <a href="benchmark/stray"><button>VAI RODAR?</button></a>
       </div>
       <div class="game-card">
-        <img src="img/shadows.jpg" alt="Assassin's Creed Shadows" />
-        <button>VAI RODAR?</button>
+        <img src="img/assassins-creed-shadows.jpg" alt="Assassin's Creed Shadows" />
+        <a href="benchmark/assassins-creed-shadows"><button>VAI RODAR?</button></a>
       </div>
     </div>
   </div>

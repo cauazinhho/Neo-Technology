@@ -250,7 +250,7 @@
       @endif
  
       <div class="input-box">
-<input type="email" name="email" placeholder="E-mail ou nome de usuário" required autofocus />
+<input type="email" name="email" placeholder="E-mail" required autofocus />
 <i>📧</i>
 </div>
  

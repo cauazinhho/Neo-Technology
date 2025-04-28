@@ -146,6 +146,12 @@
       margin-bottom: 40px;
     }
 
+    .cyber {
+      height: 365px;
+      width: 300px;
+      margin-bottom: 30px;
+    }
+
     footer {
       background-color: #00bfff;
       padding: 10px;
@@ -161,35 +167,41 @@
       <h1>Neo Technology</h1>
       <img src="{{ asset('img/lamen.png') }}" alt="Logo">
     </div>
-    <div class="login">Olá, Leon</div>
+    <div class="login">Admin</div>
   </header>
 
   <main>
-    <img src="{{ asset('img/' . $game . '.png') }}" alt="{{ ucfirst($game) }}" class="game-cover">
+  
+
+  <img class="cyber" src="{{ asset($image) }}" alt="{{ ucfirst(str_replace('-', ' ', $game)) }}">
+
+
+
 
     <div class="requisitos">
-      <div>
-        <h2 class="minimos">requisitos mínimos</h2>
-        <p>Placa de vídeo: GTX 1060 6GB ou Radeon RX 580 8GB</p>
-        <p>Processador: i5-3570 ou Ryzen 3 1200</p>
-        <p>Memória: 8 GB</p>
-        <p>Disco: 70 GB SSD</p>
-        <p>Sistema: Windows 10 64-bit</p>
-        <p>DirectX: 12</p>
-      </div>
-      <div>
-        <h2 class="recomendados">requisitos recomendados</h2>
-        <p>Placa de vídeo: RTX 2060 ou RX 5700 XT</p>
-        <p>Processador: i7-4790 ou Ryzen 5 3600</p>
-        <p>Memória: 12 GB</p>
-        <p>Disco: 70 GB SSD</p>
-        <p>Sistema: Windows 10 64-bit</p>
-        <p>DirectX: 12</p>
-      </div>
-    </div>
+  <div>
+    <h2 class="minimos">requisitos mínimos</h2>
+    <p>Placa de vídeo: {{ $requisitos['min']['gpu'] }}</p>
+    <p>Processador: {{ $requisitos['min']['cpu'] }}</p>
+    <p>Memória: {{ $requisitos['min']['ram'] }}</p>
+    <p>Disco: {{ $requisitos['min']['disk'] }}</p>
+    <p>Sistema: {{ $requisitos['min']['os'] }}</p>
+    <p>DirectX: {{ $requisitos['min']['dx'] }}</p>
+  </div>
+  <div>
+    <h2 class="recomendados">requisitos recomendados</h2>
+    <p>Placa de vídeo: {{ $requisitos['rec']['gpu'] }}</p>
+    <p>Processador: {{ $requisitos['rec']['cpu'] }}</p>
+    <p>Memória: {{ $requisitos['rec']['ram'] }}</p>
+    <p>Disco: {{ $requisitos['rec']['disk'] }}</p>
+    <p>Sistema: {{ $requisitos['rec']['os'] }}</p>
+    <p>DirectX: {{ $requisitos['rec']['dx'] }}</p>
+  </div>
+</div>
 
-    <!-- Formulário que envia para a controller -->
-    <form class="formulario" method="GET" action="{{ url('/benchmark/' . $game) }}">
+
+    <form class="formulario" method="POST" action="{{ route('telabenchmark.calcular', ['game' => $game]) }}">
+      @csrf
       <h3>Sistema do seu interesse</h3>
 
       <select name="cpu" required>
@@ -217,24 +229,25 @@
     <div class="fps-results">
       <div>
       <p>gráfico baixo</p>
-      <strong>{{ intval($fps * 0.7) }} FPS</strong>
+      <strong>{{ $fps['low'] }} FPS</strong>
       </div>
       <div>
       <p>gráfico médio</p>
-      <strong>{{ intval($fps * 0.85) }} FPS</strong>
+      <strong>{{ $fps['medium'] }} FPS</strong>
       </div>
       <div>
       <p>gráfico alto</p>
-      <strong>{{ intval($fps) }} FPS</strong>
+      <strong>{{ $fps['high'] }} FPS</strong>
       </div>
       <div>
       <p>gráfico ultra</p>
-      <strong>{{ intval($fps * 1.1) }} FPS</strong>
+      <strong>{{ $fps['ultra'] }} FPS</strong>
       </div>
     </div>
-
+  @endif
+    @if($upgradeCpu && $upgradeGpu)
     <div class="upgrade">
-      recomendamos um upgrade: <strong>{{ $cpu }} + {{ $gpu }}</strong>
+      recomendamos um upgrade: <strong>{{ $upgradeCpu }} + {{ $upgradeGpu }}</strong>
     </div>
   @endif
 
