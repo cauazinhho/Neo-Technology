@@ -41,6 +41,7 @@
       justify-content: space-between;
       align-items: center;
       padding: 10px 40px;
+      margin-bottom: 25px;
     }
 
     .logo-title {
@@ -63,8 +64,11 @@
     }
 
     .login {
-      color: #aaa;
-      font-size: 0.9rem;
+      font-weight: 100;
+      font-size: 10px;
+      color:rgb(171, 173, 173);
+      text-decoration: none;
+
     }
 
     .game-cover {
@@ -178,7 +182,12 @@
         <img src="{{ asset('img/lamen.png') }}" alt="Logo">
       </div>
     </a>
-    <div class="login">Admin</div>
+
+    <a href="/telaperfil">
+      <div class="login">
+        <h1>Perfil</h1>
+      </div>
+    </a>
   </header>
 
   <main>

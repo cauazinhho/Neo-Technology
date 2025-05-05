@@ -6,7 +6,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\ResetCpfPasswordController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
-
+use App\Http\Controllers\ExcluirController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -48,6 +48,9 @@ Route::get('/telaperfil', function () {
 
 
 
+
+
+Route::delete('/account/delete', [ExcluirController::class, 'destroy'])->name('account.destroy');
 
 
 Route::get('/benchmark/{game}', [BenchmarkController::class, 'show'])->name('telabenchmark.show');
